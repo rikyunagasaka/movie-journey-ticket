@@ -7,12 +7,13 @@
 
 <meta
   name="viewport"
-  content="width=device-width, initial-scale=1.0"
+  content="width=device-width, initial-scale=1.0, viewport-fit=cover"
 >
 
 <title>MOVIE JOURNEY 入場受付</title>
 
 <script src="https://unpkg.com/html5-qrcode"></script>
+
 
 <style>
 
@@ -20,9 +21,22 @@
   box-sizing: border-box;
 }
 
+
+html,
 body {
 
   margin: 0;
+
+  width: 100%;
+
+  height: 100%;
+
+  overflow: hidden;
+
+}
+
+
+body {
 
   font-family:
     -apple-system,
@@ -34,34 +48,59 @@ body {
   background: #fff4f8;
 
   color: #333;
+
 }
 
 
+/* =========================
+   ヘッダー
+========================= */
+
 header {
+
+  height: 18vh;
+
+  min-height: 125px;
+
+  max-height: 180px;
 
   background:
     linear-gradient(
       135deg,
       #ef79a9,
-      #e95691
+      #e95791
     );
 
   color: white;
 
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  align-items: center;
+
   text-align: center;
 
   padding:
-    55px 20px 45px;
+    env(safe-area-inset-top)
+    15px
+    10px;
+
 }
 
 
-header .school {
+.school {
 
-  font-size: 18px;
+  font-size: clamp(
+    14px,
+    2.5vw,
+    19px
+  );
 
-  margin-bottom: 18px;
+  margin-bottom: 4px;
 
-  letter-spacing: 1px;
 }
 
 
@@ -69,207 +108,431 @@ header h1 {
 
   margin: 0;
 
-  font-size: 42px;
+  font-size: clamp(
+    28px,
+    7vw,
+    48px
+  );
 
   font-weight: 800;
 
-  letter-spacing: 1px;
+  line-height: 1.05;
+
 }
 
 
-header .live {
+.live {
 
-  margin-top: 18px;
+  margin-top: 5px;
 
-  font-size: 20px;
+  font-size: clamp(
+    14px,
+    3.5vw,
+    21px
+  );
+
 }
 
 
-.container {
+/* =========================
+   メイン
+========================= */
 
-  max-width: 760px;
+main {
 
-  margin: 40px auto;
+  height: 82vh;
 
-  padding: 0 18px;
+  height:
+    calc(
+      100vh - 18vh
+    );
+
+  overflow: hidden;
+
+  padding:
+    12px
+    14px
+    max(
+      12px,
+      env(safe-area-inset-bottom)
+    );
+
 }
 
 
 .card {
 
+  width: 100%;
+
+  height: 100%;
+
+  max-width: 650px;
+
+  margin: 0 auto;
+
   background: white;
 
-  border-radius: 30px;
-
-  padding: 38px 24px;
+  border-radius: 24px;
 
   box-shadow:
-    0 10px 35px
-    rgba(220, 80, 130, 0.12);
+    0 5px 25px
+    rgba(
+      220,
+      80,
+      130,
+      0.12
+    );
 
-  text-align: center;
+  padding:
+    14px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
 }
 
 
-h2 {
+/* =========================
+   タイトル
+========================= */
 
-  margin-top: 0;
+.title {
 
-  font-size: 34px;
+  font-size: clamp(
+    25px,
+    6vw,
+    35px
+  );
+
+  font-weight: 800;
+
+  margin:
+    0 0 3px;
+
 }
 
 
 .description {
 
+  text-align: center;
+
   color: #777;
 
-  font-size: 18px;
+  font-size: clamp(
+    12px,
+    3.2vw,
+    17px
+  );
 
-  line-height: 1.8;
+  line-height: 1.35;
 
-  margin-bottom: 30px;
+  margin:
+    0 0 8px;
+
 }
 
 
-button {
-
-  width: 100%;
-
-  border: none;
-
-  border-radius: 18px;
-
-  padding: 20px;
-
-  font-size: 21px;
-
-  font-weight: bold;
-
-  cursor: pointer;
-}
-
-
-#startButton {
-
-  background: #e95791;
-
-  color: white;
-}
-
+/* =========================
+   カメラ
+========================= */
 
 #reader {
 
   width: 100%;
 
-  max-width: 500px;
+  max-width: 520px;
 
-  margin: 25px auto;
+  flex: 1;
+
+  min-height: 0;
+
+  border-radius: 18px;
 
   overflow: hidden;
 
-  border-radius: 20px;
+  background: #111;
+
+  position: relative;
+
 }
 
 
-.status {
+/*
+   html5-qrcodeが作る映像を
+   できるだけ大きく表示
+*/
 
-  margin-top: 20px;
+#reader video {
 
-  font-size: 18px;
+  width: 100% !important;
+
+  height: 100% !important;
+
+  object-fit: cover !important;
+
+}
+
+
+#reader__scan_region {
+
+  width: 100% !important;
+
+  height: 100% !important;
+
+}
+
+
+/* QR枠 */
+
+#reader__scan_region img {
+
+  display: none !important;
+
+}
+
+
+/* =========================
+   起動ボタン
+========================= */
+
+#startButton {
+
+  width: 100%;
+
+  max-width: 520px;
+
+  border: 0;
+
+  border-radius: 15px;
+
+  background: #e95791;
+
+  color: white;
+
+  font-size: 20px;
+
+  font-weight: 700;
+
+  padding: 15px;
+
+  margin-top: 7px;
+
+}
+
+
+#startButton:active {
+
+  transform: scale(0.98);
+
+}
+
+
+/* =========================
+   ステータス
+========================= */
+
+#status {
+
+  flex-shrink: 0;
+
+  text-align: center;
 
   color: #777;
+
+  font-size: 14px;
+
+  line-height: 1.3;
+
+  padding:
+    6px 3px;
+
 }
 
+
+/* =========================
+   結果
+========================= */
 
 .result {
 
-  margin-top: 25px;
-
-  padding: 35px 20px;
-
-  border-radius: 25px;
-
   display: none;
+
+  position: absolute;
+
+  z-index: 20;
+
+  inset: 0;
+
+  background: rgba(
+    255,
+    255,
+    255,
+    0.98
+  );
+
+  border-radius: 24px;
+
+  padding:
+    30px 20px;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  text-align: center;
+
+}
+
+
+.result.show {
+
+  display: flex;
+
 }
 
 
 .result.success {
 
-  display: block;
+  border:
+    6px solid #4caf7a;
 
-  background: #fff0f7;
-
-  border: 4px solid #e95791;
 }
 
 
 .result.warning {
 
-  display: block;
+  border:
+    6px solid #e0a500;
 
-  background: #fff9e8;
-
-  border: 4px solid #e0a500;
 }
 
 
 .result.error {
 
-  display: block;
+  border:
+    6px solid #d54a3a;
 
-  background: #fff0f0;
-
-  border: 4px solid #d54a3a;
 }
 
 
 .result-icon {
 
-  font-size: 55px;
+  font-size: 65px;
 
-  font-weight: bold;
+  line-height: 1;
 
-  margin-bottom: 10px;
+  font-weight: 800;
+
 }
 
 
-.result h3 {
+.result-title {
 
-  font-size: 36px;
+  font-size: 40px;
 
-  margin: 10px 0 25px;
+  font-weight: 800;
+
+  margin:
+    10px 0 18px;
+
 }
 
 
-.info {
+.result-info {
 
   font-size: 20px;
 
-  line-height: 2;
+  line-height: 1.8;
 
-  margin-bottom: 25px;
 }
 
 
-.next {
+.next-button {
+
+  width: 100%;
+
+  max-width: 420px;
+
+  border: 0;
+
+  border-radius: 15px;
 
   background: #333;
 
   color: white;
+
+  font-size: 19px;
+
+  font-weight: 700;
+
+  padding: 15px;
+
+  margin-top: 25px;
+
 }
 
 
-footer {
+/* =========================
+   小さいiPhone
+========================= */
 
-  text-align: center;
+@media (
+  max-height: 700px
+) {
 
-  color: #999;
+  header {
 
-  padding: 30px 20px 60px;
+    height: 16vh;
 
-  font-size: 16px;
+    min-height: 105px;
 
-  line-height: 1.8;
+  }
+
+
+  main {
+
+    height: 84vh;
+
+    height:
+      calc(
+        100vh - 16vh
+      );
+
+  }
+
+
+  .title {
+
+    font-size: 25px;
+
+  }
+
+
+  .description {
+
+    font-size: 12px;
+
+  }
+
+
+  #status {
+
+    font-size: 12px;
+
+  }
+
+
+  .next-button {
+
+    margin-top: 15px;
+
+  }
+
 }
 
 </style>
@@ -297,23 +560,29 @@ SO.ON project NAGOYA ライブ
 </header>
 
 
-<div class="container">
+<main>
 
 
 <div class="card">
 
-<h2>
+
+<div class="title">
 入場受付
-</h2>
+</div>
+
 
 <div class="description">
 
 チケットのQRコードを<br>
-読み取ってください。<br>
-
-読み取り後、自動的に入場処理を行います。
+カメラにかざしてください。
 
 </div>
+
+
+<div
+  id="reader"
+  style="display:none;"
+></div>
 
 
 <button
@@ -324,17 +593,10 @@ SO.ON project NAGOYA ライブ
 </button>
 
 
-<div
-  id="reader"
-  style="display:none;"
-></div>
+<div id="status">
 
-
-<div
-  id="status"
-  class="status"
->
 カメラを起動してください。
+
 </div>
 
 
@@ -348,42 +610,41 @@ SO.ON project NAGOYA ライブ
   class="result-icon"
 ></div>
 
-<h3 id="resultTitle"></h3>
+
+<div
+  id="resultTitle"
+  class="result-title"
+></div>
+
 
 <div
   id="resultInfo"
-  class="info"
+  class="result-info"
 ></div>
 
+
 <button
-  class="next"
+  class="next-button"
   onclick="nextTicket()"
 >
 もう一度読み取る
 </button>
 
-</div>
 
 </div>
 
+
 </div>
 
-
-<footer>
-
-名古屋スクールオブミュージック＆ダンス専門学校<br>
-
-nsm_event@edu.nsm.ac.jp
-
-</footer>
+</main>
 
 
 <script>
 
 
-/* =========================
+/* =================================================
    Apps Script URL
-========================= */
+================================================= */
 
 const API_URL =
 "https://script.google.com/a/macros/edu.nsm.ac.jp/s/AKfycbwIo7q50x_TX1baEnBwEDEp51rn1PR0UP0Q5ILdHD1z6kUCQadIMNH4Hl1p7t_1ZpxhhA/exec";
@@ -393,42 +654,61 @@ let scanner = null;
 
 let scanning = false;
 
+let processing = false;
 
-/* =========================
+
+/* =================================================
    カメラ起動
-========================= */
+================================================= */
 
 async function startCamera() {
 
-  if (scanning) {
+  if (scanning || processing) {
     return;
   }
 
-  document.getElementById(
-    "startButton"
-  ).style.display = "none";
+
+  const button =
+    document.getElementById(
+      "startButton"
+    );
 
 
-  document.getElementById(
-    "reader"
-  ).style.display = "block";
+  const reader =
+    document.getElementById(
+      "reader"
+    );
 
 
-  document.getElementById(
-    "status"
-  ).textContent =
-    "カメラを起動しています…";
+  const status =
+    document.getElementById(
+      "status"
+    );
+
+
+  button.style.display =
+    "none";
+
+
+  reader.style.display =
+    "block";
+
+
+  status.textContent =
+    "外カメラを起動しています…";
 
 
   scanner =
-    new Html5Qrcode("reader");
+    new Html5Qrcode(
+      "reader"
+    );
 
 
   try {
 
     /*
-      外カメラを優先
-    */
+     * まず外カメラを直接指定
+     */
 
     await scanner.start(
 
@@ -441,10 +721,28 @@ async function startCamera() {
       {
         fps: 10,
 
-        qrbox: {
-          width: 280,
-          height: 280
-        }
+        qrbox: function(
+          width,
+          height
+        ) {
+
+          const size =
+            Math.min(
+              width,
+              height,
+              300
+            );
+
+          return {
+            width: size,
+            height: size
+          };
+
+        },
+
+        aspectRatio:
+          1.0
+
       },
 
       onScanSuccess,
@@ -453,58 +751,103 @@ async function startCamera() {
 
     );
 
+
     scanning = true;
 
-    document.getElementById(
-      "status"
-    ).textContent =
-      "チケットのQRコードを読み取ってください。";
+
+    status.textContent =
+      "チケットのQRコードをかざしてください。";
 
 
   } catch (error) {
 
-    console.error(error);
+    console.log(
+      "environment指定失敗:",
+      error
+    );
+
 
     /*
-      exact environment が使えない端末用
-      → 外カメラを優先して探す
-    */
+     * それでも駄目ならカメラ一覧から
+     * 背面カメラを探す
+     */
 
     try {
 
       const cameras =
         await Html5Qrcode.getCameras();
 
-      if (!cameras || cameras.length === 0) {
+
+      if (
+        !cameras ||
+        cameras.length === 0
+      ) {
 
         throw new Error(
-          "カメラが見つかりません。"
+          "カメラがありません。"
         );
 
       }
 
 
       let cameraId =
-        cameras[cameras.length - 1].id;
+        null;
 
 
-      for (const camera of cameras) {
+      /*
+       * ラベルから背面カメラを探す
+       */
+
+      for (
+        const camera of cameras
+      ) {
 
         const label =
-          (camera.label || "").toLowerCase();
+          String(
+            camera.label || ""
+          ).toLowerCase();
+
 
         if (
-          label.includes("back") ||
-          label.includes("rear") ||
-          label.includes("environment") ||
-          label.includes("外")
+
+          label.includes(
+            "back"
+          ) ||
+
+          label.includes(
+            "rear"
+          ) ||
+
+          label.includes(
+            "environment"
+          ) ||
+
+          label.includes(
+            "外"
+          )
+
         ) {
 
-          cameraId = camera.id;
+          cameraId =
+            camera.id;
 
           break;
 
         }
+
+      }
+
+
+      /*
+       * 見つからなければ最後のカメラ
+       */
+
+      if (!cameraId) {
+
+        cameraId =
+          cameras[
+            cameras.length - 1
+          ].id;
 
       }
 
@@ -516,10 +859,28 @@ async function startCamera() {
         {
           fps: 10,
 
-          qrbox: {
-            width: 280,
-            height: 280
-          }
+          qrbox: function(
+            width,
+            height
+          ) {
+
+            const size =
+              Math.min(
+                width,
+                height,
+                300
+              );
+
+            return {
+              width: size,
+              height: size
+            };
+
+          },
+
+          aspectRatio:
+            1.0
+
         },
 
         onScanSuccess,
@@ -531,24 +892,28 @@ async function startCamera() {
 
       scanning = true;
 
-      document.getElementById(
-        "status"
-      ).textContent =
-        "チケットのQRコードを読み取ってください。";
+
+      status.textContent =
+        "チケットのQRコードをかざしてください。";
 
 
     } catch (error2) {
 
-      console.error(error2);
+      console.error(
+        error2
+      );
 
-      document.getElementById(
-        "status"
-      ).textContent =
-        "カメラを起動できませんでした。外カメラの使用を許可してください。";
 
-      document.getElementById(
-        "startButton"
-      ).style.display = "block";
+      button.style.display =
+        "block";
+
+
+      reader.style.display =
+        "none";
+
+
+      status.textContent =
+        "外カメラを起動できませんでした。カメラの使用を許可してください。";
 
     }
 
@@ -557,24 +922,42 @@ async function startCamera() {
 }
 
 
-/* =========================
-   QR読み取り成功
-========================= */
+/* =================================================
+   QR読み取り
+================================================= */
 
-async function onScanSuccess(decodedText) {
+function onScanSuccess(
+  decodedText
+) {
 
-  if (!scanning) {
+  if (
+    !scanning ||
+    processing
+  ) {
+
     return;
+
   }
+
+
+  processing = true;
 
   scanning = false;
 
 
-  try {
+  /*
+   * カメラ停止
+   */
 
-    await scanner.stop();
+  if (scanner) {
 
-  } catch (e) {}
+    scanner
+      .stop()
+      .catch(
+        () => {}
+      );
+
+  }
 
 
   document.getElementById(
@@ -584,15 +967,17 @@ async function onScanSuccess(decodedText) {
 
 
   const ticketId =
-    String(decodedText).trim();
+    String(
+      decodedText
+    ).trim();
 
 
   /*
-    JSONP方式でApps Scriptへ送信
-  */
+   * JSONP
+   */
 
   const callbackName =
-    "ticketCallback_" +
+    "movieJourneyCallback_" +
     Date.now();
 
 
@@ -601,11 +986,15 @@ async function onScanSuccess(decodedText) {
 
       try {
 
-        showResult(data);
+        showResult(
+          data
+        );
 
       } finally {
 
-        delete window[callbackName];
+        delete window[
+          callbackName
+        ];
 
         const script =
           document.getElementById(
@@ -613,7 +1002,9 @@ async function onScanSuccess(decodedText) {
           );
 
         if (script) {
+
           script.remove();
+
         }
 
       }
@@ -622,7 +1013,9 @@ async function onScanSuccess(decodedText) {
 
 
   const script =
-    document.createElement("script");
+    document.createElement(
+      "script"
+    );
 
 
   script.id =
@@ -632,7 +1025,9 @@ async function onScanSuccess(decodedText) {
   script.src =
     API_URL +
     "?ticketId=" +
-    encodeURIComponent(ticketId) +
+    encodeURIComponent(
+      ticketId
+    ) +
     "&callback=" +
     callbackName;
 
@@ -640,9 +1035,12 @@ async function onScanSuccess(decodedText) {
   script.onerror =
     function() {
 
-      delete window[callbackName];
+      delete window[
+        callbackName
+      ];
 
       script.remove();
+
 
       showResult({
 
@@ -651,59 +1049,86 @@ async function onScanSuccess(decodedText) {
         type: "error",
 
         message:
-          "受付処理に接続できませんでした。"
+          "Apps Scriptに接続できませんでした。"
 
       });
 
     };
 
 
-  document.body.appendChild(script);
+  document.body.appendChild(
+    script
+  );
 
 }
 
 
-/* =========================
-   QR読み取り中のエラー
-========================= */
+/* =================================================
+   QR読み取り中
+================================================= */
 
-function onScanFailure(error) {
+function onScanFailure(
+  error
+) {
 
-  // 読み取り失敗は通常なので何もしない
+  // 通常の読み取り失敗なので表示しない
 
 }
 
 
-/* =========================
+/* =================================================
    結果表示
-========================= */
+================================================= */
 
-function showResult(data) {
+function showResult(
+  data
+) {
 
   const result =
-    document.getElementById("result");
+    document.getElementById(
+      "result"
+    );
+
 
   const icon =
-    document.getElementById("resultIcon");
+    document.getElementById(
+      "resultIcon"
+    );
+
 
   const title =
-    document.getElementById("resultTitle");
+    document.getElementById(
+      "resultTitle"
+    );
+
 
   const info =
-    document.getElementById("resultInfo");
+    document.getElementById(
+      "resultInfo"
+    );
 
 
-  result.className = "result";
+  result.className =
+    "result show";
 
+
+  /*
+   * 入場OK
+   */
 
   if (
     data &&
     data.type === "success"
   ) {
 
-    result.classList.add("success");
+    result.classList.add(
+      "success"
+    );
 
-    icon.textContent = "✓";
+
+    icon.textContent =
+      "✓";
+
 
     title.textContent =
       "入場OK";
@@ -711,16 +1136,20 @@ function showResult(data) {
 
     info.innerHTML =
 
-      "整理番号：<strong>" +
+      "整理番号：" +
+      "<strong>" +
       escapeHtml(
         data.reservationNumber
       ) +
-      "</strong><br>" +
+      "</strong>" +
+
+      "<br>" +
 
       "氏名：" +
       escapeHtml(
         data.name || ""
       ) +
+
       "<br>" +
 
       "入場時間：" +
@@ -729,14 +1158,26 @@ function showResult(data) {
       );
 
 
-  } else if (
+  }
+
+
+  /*
+   * 二重入場
+   */
+
+  else if (
     data &&
     data.type === "already"
   ) {
 
-    result.classList.add("warning");
+    result.classList.add(
+      "warning"
+    );
 
-    icon.textContent = "!";
+
+    icon.textContent =
+      "!";
+
 
     title.textContent =
       "入場済み";
@@ -744,18 +1185,23 @@ function showResult(data) {
 
     info.innerHTML =
 
-      "このチケットはすでに入場済みです。<br><br>" +
+      "このチケットは<br>" +
+      "<strong>すでに入場済み</strong>です。" +
+
+      "<br><br>" +
 
       "整理番号：" +
       escapeHtml(
         data.reservationNumber
       ) +
+
       "<br>" +
 
       "氏名：" +
       escapeHtml(
         data.name || ""
       ) +
+
       "<br>" +
 
       "入場時間：" +
@@ -764,48 +1210,94 @@ function showResult(data) {
       );
 
 
-  } else {
+  }
 
-    result.classList.add("error");
 
-    icon.textContent = "!";
+  /*
+   * 無効
+   */
+
+  else if (
+    data &&
+    data.type === "invalid"
+  ) {
+
+    result.classList.add(
+      "error"
+    );
+
+
+    icon.textContent =
+      "!";
+
+
+    title.textContent =
+      "チケット無効";
+
+
+    info.textContent =
+      data.message ||
+      "有効なチケットが見つかりません。";
+
+
+  }
+
+
+  /*
+   * その他のエラー
+   */
+
+  else {
+
+    result.classList.add(
+      "error"
+    );
+
+
+    icon.textContent =
+      "!";
+
 
     title.textContent =
       "受付エラー";
 
 
-    info.innerHTML =
-      escapeHtml(
-        data && data.message
-          ? data.message
-          : "受付処理に失敗しました。"
-      );
+    info.textContent =
+      data &&
+      data.message
+        ? data.message
+        : "受付処理に失敗しました。";
 
   }
-
-
-  result.style.display = "block";
 
 }
 
 
-/* =========================
-   もう一度読み取る
-========================= */
+/* =================================================
+   次のチケット
+================================================= */
 
 async function nextTicket() {
 
   const result =
-    document.getElementById("result");
+    document.getElementById(
+      "result"
+    );
 
-  result.style.display =
-    "none";
+
+  result.className =
+    "result";
+
+
+  processing = false;
+
+  scanning = false;
 
 
   document.getElementById(
     "status"
   ).textContent =
-    "カメラを起動しています…";
+    "外カメラを起動しています…";
 
 
   await startCamera();
@@ -813,23 +1305,46 @@ async function nextTicket() {
 }
 
 
-/* =========================
+/* =================================================
    HTMLエスケープ
-========================= */
+================================================= */
 
-function escapeHtml(value) {
+function escapeHtml(
+  value
+) {
 
-  return String(value || "")
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
+  return String(
+    value || ""
+  )
+
+    .replace(
+      /&/g,
+      "&amp;"
+    )
+
+    .replace(
+      /</g,
+      "&lt;"
+    )
+
+    .replace(
+      />/g,
+      "&gt;"
+    )
+
+    .replace(
+      /"/g,
+      "&quot;"
+    )
+
+    .replace(
+      /'/g,
+      "&#039;"
+    );
 
 }
 
 </script>
-
 
 </body>
 
