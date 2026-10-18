@@ -34,16 +34,16 @@ body {
   background: #fff4f8;
 
   color: #333;
-
 }
 
-.header {
+
+header {
 
   background:
     linear-gradient(
       135deg,
-      #ed6aa3,
-      #e94f91
+      #ef79a9,
+      #e95691
     );
 
   color: white;
@@ -51,39 +51,39 @@ body {
   text-align: center;
 
   padding:
-    55px
-    20px
-    48px;
-
+    55px 20px 45px;
 }
 
-.school {
 
-  font-size: 22px;
+header .school {
 
-  margin-bottom: 22px;
+  font-size: 18px;
+
+  margin-bottom: 18px;
 
   letter-spacing: 1px;
-
 }
 
-.title {
 
-  font-size: 48px;
+header h1 {
+
+  margin: 0;
+
+  font-size: 42px;
 
   font-weight: 800;
 
   letter-spacing: 1px;
-
-  margin-bottom: 18px;
-
 }
 
-.live {
 
-  font-size: 25px;
+header .live {
 
+  margin-top: 18px;
+
+  font-size: 20px;
 }
+
 
 .container {
 
@@ -91,48 +91,45 @@ body {
 
   margin: 40px auto;
 
-  padding: 0 20px;
-
+  padding: 0 18px;
 }
+
 
 .card {
 
   background: white;
 
-  border-radius: 32px;
+  border-radius: 30px;
 
-  padding: 45px 30px 40px;
+  padding: 38px 24px;
 
   box-shadow:
     0 10px 35px
-    rgba(180, 80, 120, 0.12);
+    rgba(220, 80, 130, 0.12);
 
   text-align: center;
-
 }
 
-h1 {
 
-  font-size: 42px;
+h2 {
 
-  margin:
-    0
-    0
-    35px;
+  margin-top: 0;
 
+  font-size: 34px;
 }
+
 
 .description {
 
-  font-size: 20px;
+  color: #777;
 
-  line-height: 1.9;
+  font-size: 18px;
 
-  color: #666;
+  line-height: 1.8;
 
-  margin-bottom: 35px;
-
+  margin-bottom: 30px;
 }
+
 
 button {
 
@@ -140,95 +137,81 @@ button {
 
   border: none;
 
-  border-radius: 20px;
+  border-radius: 18px;
 
-  padding: 22px;
+  padding: 20px;
 
-  font-size: 24px;
+  font-size: 21px;
 
-  font-weight: 700;
+  font-weight: bold;
 
   cursor: pointer;
-
 }
+
 
 #startButton {
 
   background: #e95791;
 
   color: white;
-
-  margin-bottom: 25px;
-
 }
 
-#startButton:active {
-
-  transform: scale(0.98);
-
-}
 
 #reader {
 
   width: 100%;
 
-  max-width: 520px;
+  max-width: 500px;
 
-  margin: 20px auto;
+  margin: 25px auto;
 
   overflow: hidden;
 
   border-radius: 20px;
-
 }
+
 
 .status {
 
-  font-size: 20px;
+  margin-top: 20px;
 
-  color: #666;
+  font-size: 18px;
 
-  margin:
-    20px
-    0;
-
+  color: #777;
 }
+
 
 .result {
 
+  margin-top: 25px;
+
+  padding: 35px 20px;
+
+  border-radius: 25px;
+
   display: none;
-
-  margin-top: 30px;
-
-  padding: 35px 25px;
-
-  border-radius: 28px;
-
 }
+
 
 .result.success {
 
   display: block;
 
-  background: #fff0f6;
+  background: #fff0f7;
 
-  border:
-    4px solid
-    #e95791;
-
+  border: 4px solid #e95791;
 }
+
 
 .result.warning {
 
   display: block;
 
-  background: #fff8e8;
+  background: #fff9e8;
 
-  border:
-    4px solid
-    #e5a72d;
-
+  border: 4px solid #e0a500;
 }
+
 
 .result.error {
 
@@ -236,146 +219,57 @@ button {
 
   background: #fff0f0;
 
-  border:
-    4px solid
-    #d64535;
-
+  border: 4px solid #d54a3a;
 }
+
 
 .result-icon {
 
-  font-size: 65px;
+  font-size: 55px;
 
-  font-weight: 800;
+  font-weight: bold;
 
   margin-bottom: 10px;
-
 }
 
-.result-title {
 
-  font-size: 40px;
+.result h3 {
 
-  font-weight: 800;
+  font-size: 36px;
 
-  margin-bottom: 25px;
-
+  margin: 10px 0 25px;
 }
+
 
 .info {
 
-  font-size: 21px;
+  font-size: 20px;
 
   line-height: 2;
 
-  text-align: left;
-
-  max-width: 440px;
-
-  margin: auto;
-
+  margin-bottom: 25px;
 }
 
-.info strong {
 
-  font-size: 26px;
-
-}
-
-#nextButton {
-
-  margin-top: 30px;
+.next {
 
   background: #333;
 
   color: white;
-
 }
 
-.footer {
+
+footer {
 
   text-align: center;
 
   color: #999;
 
-  font-size: 18px;
-
-  line-height: 1.8;
-
-  padding:
-    10px
-    20px
-    60px;
-
-}
-
-.camera-note {
+  padding: 30px 20px 60px;
 
   font-size: 16px;
 
-  color: #999;
-
-  margin-top: 15px;
-
-}
-
-@media (max-width: 600px) {
-
-  .header {
-
-    padding:
-      45px
-      15px
-      40px;
-
-  }
-
-  .school {
-
-    font-size: 19px;
-
-  }
-
-  .title {
-
-    font-size: 38px;
-
-  }
-
-  .live {
-
-    font-size: 20px;
-
-  }
-
-  .card {
-
-    padding:
-      35px
-      20px;
-
-    border-radius: 26px;
-
-  }
-
-  h1 {
-
-    font-size: 34px;
-
-  }
-
-  .description {
-
-    font-size: 18px;
-
-  }
-
-  button {
-
-    font-size: 21px;
-
-  }
-
+  line-height: 1.8;
 }
 
 </style>
@@ -386,21 +280,21 @@ button {
 <body>
 
 
-<div class="header">
+<header>
 
-  <div class="school">
-    NSM学園祭2026
-  </div>
-
-  <div class="title">
-    MOVIE JOURNEY
-  </div>
-
-  <div class="live">
-    SO.ON project NAGOYA ライブ
-  </div>
-
+<div class="school">
+NSM学園祭2026
 </div>
+
+<h1>
+MOVIE JOURNEY
+</h1>
+
+<div class="live">
+SO.ON project NAGOYA ライブ
+</div>
+
+</header>
 
 
 <div class="container">
@@ -408,17 +302,16 @@ button {
 
 <div class="card">
 
-
-<h1>
-  入場受付
-</h1>
-
+<h2>
+入場受付
+</h2>
 
 <div class="description">
 
-  チケットのQRコードを読み取ってください。<br>
+チケットのQRコードを<br>
+読み取ってください。<br>
 
-  読み取り後、自動的に入場処理を行います。
+読み取り後、自動的に入場処理を行います。
 
 </div>
 
@@ -427,33 +320,21 @@ button {
   id="startButton"
   onclick="startCamera()"
 >
-
-  カメラを起動する
-
+カメラを起動する
 </button>
+
+
+<div
+  id="reader"
+  style="display:none;"
+></div>
 
 
 <div
   id="status"
   class="status"
 >
-
-  カメラを起動してください。
-
-</div>
-
-
-<div
-  id="reader"
-></div>
-
-
-<div
-  class="camera-note"
->
-
-  QRコードを読み取る際は、チケット画面をカメラに向けてください。
-
+カメラを起動してください。
 </div>
 
 
@@ -462,154 +343,92 @@ button {
   class="result"
 >
 
-  <div
-    id="resultIcon"
-    class="result-icon"
-  ></div>
+<div
+  id="resultIcon"
+  class="result-icon"
+></div>
 
-  <div
-    id="resultTitle"
-    class="result-title"
-  ></div>
+<h3 id="resultTitle"></h3>
 
-  <div
-    id="resultInfo"
-    class="info"
-  ></div>
+<div
+  id="resultInfo"
+  class="info"
+></div>
 
-  <button
-    id="nextButton"
-    onclick="nextTicket()"
-  >
+<button
+  class="next"
+  onclick="nextTicket()"
+>
+もう一度読み取る
+</button>
 
-    もう一度読み取る
+</div>
 
-  </button>
+</div>
 
 </div>
 
 
-</div>
+<footer>
 
+名古屋スクールオブミュージック＆ダンス専門学校<br>
 
-</div>
+nsm_event@edu.nsm.ac.jp
 
-
-<div class="footer">
-
-  名古屋スクールオブミュージック＆ダンス専門学校<br>
-
-  nsm_event@edu.nsm.ac.jp
-
-</div>
-
+</footer>
 
 
 <script>
 
 
-/* ========================================
-   Google Apps Script
-   ======================================== */
+/* =========================
+   Apps Script URL
+========================= */
 
 const API_URL =
-  "https://script.google.com/a/macros/edu.nsm.ac.jp/s/AKfycbwIo7q50x_TX1baEnBwEDEp51rn1PR0UP0Q5ILdHD1z6kUCQadIMNH4Hl1p7t_1ZpxhhA/exec";
+"https://script.google.com/a/macros/edu.nsm.ac.jp/s/AKfycbwIo7q50x_TX1baEnBwEDEp51rn1PR0UP0Q5ILdHD1z6kUCQadIMNH4Hl1p7t_1ZpxhhA/exec";
 
-
-
-/* ========================================
-   変数
-   ======================================== */
 
 let scanner = null;
 
 let scanning = false;
 
 
-
-/* ========================================
+/* =========================
    カメラ起動
-   ======================================== */
+========================= */
 
 async function startCamera() {
 
-  const status =
-    document.getElementById("status");
+  if (scanning) {
+    return;
+  }
 
-  const startButton =
-    document.getElementById("startButton");
+  document.getElementById(
+    "startButton"
+  ).style.display = "none";
 
-  const result =
-    document.getElementById("result");
+
+  document.getElementById(
+    "reader"
+  ).style.display = "block";
+
+
+  document.getElementById(
+    "status"
+  ).textContent =
+    "カメラを起動しています…";
+
+
+  scanner =
+    new Html5Qrcode("reader");
 
 
   try {
 
-    result.className =
-      "result";
-
-    result.style.display =
-      "none";
-
-
-    status.textContent =
-      "外カメラを起動しています…";
-
-
-    startButton.disabled =
-      true;
-
-
     /*
-     * 前回のカメラが残っていた場合
-     */
-
-    if (scanner) {
-
-      try {
-
-        await scanner.stop();
-
-      } catch (e) {}
-
-      scanner = null;
-
-    }
-
-
-    /*
-     * 新しいQRリーダー
-     */
-
-    scanner =
-      new Html5Qrcode(
-        "reader"
-      );
-
-
-    /*
-     * 外カメラを指定
-     *
-     * environment = 背面カメラ
-     */
-
-    const config = {
-
-      fps: 10,
-
-      qrbox: {
-        width: 280,
-        height: 280
-      },
-
-      aspectRatio: 1.0,
-
-      formatsToSupport: [
-        Html5QrcodeSupportedFormats.QR_CODE
-      ]
-
-    };
-
+      外カメラを優先
+    */
 
     await scanner.start(
 
@@ -619,139 +438,117 @@ async function startCamera() {
         }
       },
 
-      config,
-
-      onScanSuccess,
-
-      function(errorMessage) {
-
-        /*
-         * QRコードをまだ
-         * 読み取れていないとき
-         *
-         * 何もしない
-         */
-
-      }
-
-    );
-
-
-    scanning = true;
-
-
-    status.textContent =
-      "QRコードを読み取ってください。";
-
-
-    startButton.textContent =
-      "外カメラ起動中";
-
-
-  } catch (error) {
-
-    console.error(
-      "Camera error:",
-      error
-    );
-
-
-    /*
-     * exact environment が
-     * iPhone側で通らない場合の
-     * 予備処理
-     */
-
-    try {
-
-      if (scanner) {
-
-        try {
-
-          await scanner.stop();
-
-        } catch (e) {}
-
-      }
-
-
-      scanner =
-        new Html5Qrcode(
-          "reader"
-        );
-
-
-      const config = {
-
+      {
         fps: 10,
 
         qrbox: {
           width: 280,
           height: 280
-        },
+        }
+      },
 
-        aspectRatio: 1.0
+      onScanSuccess,
 
-      };
+      onScanFailure
+
+    );
+
+    scanning = true;
+
+    document.getElementById(
+      "status"
+    ).textContent =
+      "チケットのQRコードを読み取ってください。";
+
+
+  } catch (error) {
+
+    console.error(error);
+
+    /*
+      exact environment が使えない端末用
+      → 外カメラを優先して探す
+    */
+
+    try {
+
+      const cameras =
+        await Html5Qrcode.getCameras();
+
+      if (!cameras || cameras.length === 0) {
+
+        throw new Error(
+          "カメラが見つかりません。"
+        );
+
+      }
+
+
+      let cameraId =
+        cameras[cameras.length - 1].id;
+
+
+      for (const camera of cameras) {
+
+        const label =
+          (camera.label || "").toLowerCase();
+
+        if (
+          label.includes("back") ||
+          label.includes("rear") ||
+          label.includes("environment") ||
+          label.includes("外")
+        ) {
+
+          cameraId = camera.id;
+
+          break;
+
+        }
+
+      }
 
 
       await scanner.start(
 
-        {
-          facingMode: "environment"
-        },
+        cameraId,
 
-        config,
+        {
+          fps: 10,
+
+          qrbox: {
+            width: 280,
+            height: 280
+          }
+        },
 
         onScanSuccess,
 
-        function() {}
+        onScanFailure
 
       );
 
 
       scanning = true;
 
-
-      status.textContent =
-        "外カメラでQRコードを読み取ってください。";
-
-
-      startButton.textContent =
-        "外カメラ起動中";
+      document.getElementById(
+        "status"
+      ).textContent =
+        "チケットのQRコードを読み取ってください。";
 
 
-      startButton.disabled =
-        false;
+    } catch (error2) {
 
+      console.error(error2);
 
-      return;
+      document.getElementById(
+        "status"
+      ).textContent =
+        "カメラを起動できませんでした。外カメラの使用を許可してください。";
 
-
-    } catch (secondError) {
-
-      console.error(
-        "Camera fallback error:",
-        secondError
-      );
-
-
-      status.textContent =
-        "カメラを起動できませんでした。";
-
-
-      startButton.textContent =
-        "カメラを起動する";
-
-
-      startButton.disabled =
-        false;
-
-
-      alert(
-        "外カメラを起動できませんでした。\n\n" +
-        "iPhoneの設定で、このサイトのカメラ使用を許可してください。"
-      );
+      document.getElementById(
+        "startButton"
+      ).style.display = "block";
 
     }
 
@@ -760,47 +557,24 @@ async function startCamera() {
 }
 
 
-
-/* ========================================
+/* =========================
    QR読み取り成功
-   ======================================== */
+========================= */
 
-async function onScanSuccess(
-  decodedText,
-  decodedResult
-) {
-
-  /*
-   * 連続読み取り防止
-   */
+async function onScanSuccess(decodedText) {
 
   if (!scanning) {
-
     return;
-
   }
-
 
   scanning = false;
 
 
-  /*
-   * カメラ停止
-   */
+  try {
 
-  if (scanner) {
+    await scanner.stop();
 
-    try {
-
-      await scanner.stop();
-
-    } catch (e) {
-
-      console.log(e);
-
-    }
-
-  }
+  } catch (e) {}
 
 
   document.getElementById(
@@ -809,110 +583,66 @@ async function onScanSuccess(
     "チケットを確認しています…";
 
 
-  /*
-   * QRコードの中身
-   *
-   * 今回は
-   * TKT-XXXXXXXXXXXX
-   */
-
   const ticketId =
     String(decodedText).trim();
 
 
   /*
-   * Apps Scriptへ送る
-   *
-   * JSONP方式
-   */
-
-  checkTicket(ticketId);
-
-}
-
-
-
-/* ========================================
-   チケット確認
-   ======================================== */
-
-function checkTicket(ticketId) {
-
+    JSONP方式でApps Scriptへ送信
+  */
 
   const callbackName =
     "ticketCallback_" +
     Date.now();
 
 
-  /*
-   * Apps Scriptから
-   * 結果が返ってきたとき
-   */
-
   window[callbackName] =
     function(data) {
 
+      try {
 
-      showResult(data);
+        showResult(data);
 
+      } finally {
 
-      /*
-       * 後片付け
-       */
+        delete window[callbackName];
 
-      delete window[
-        callbackName
-      ];
+        const script =
+          document.getElementById(
+            callbackName
+          );
 
-
-      const oldScript =
-        document.getElementById(
-          "ticketApiScript"
-        );
-
-
-      if (oldScript) {
-
-        oldScript.remove();
+        if (script) {
+          script.remove();
+        }
 
       }
 
     };
 
 
-  /*
-   * JSONP用scriptタグ
-   */
-
   const script =
-    document.createElement(
-      "script"
-    );
+    document.createElement("script");
 
 
   script.id =
-    "ticketApiScript";
+    callbackName;
 
 
   script.src =
     API_URL +
     "?ticketId=" +
-    encodeURIComponent(
-      ticketId
-    ) +
+    encodeURIComponent(ticketId) +
     "&callback=" +
-    encodeURIComponent(
-      callbackName
-    );
+    callbackName;
 
-
-  /*
-   * 通信エラー
-   */
 
   script.onerror =
     function() {
 
+      delete window[callbackName];
+
+      script.remove();
 
       showResult({
 
@@ -921,87 +651,59 @@ function checkTicket(ticketId) {
         type: "error",
 
         message:
-          "受付処理に失敗しました。"
+          "受付処理に接続できませんでした。"
 
       });
-
-
-      delete window[
-        callbackName
-      ];
-
-
-      script.remove();
 
     };
 
 
-  document.body.appendChild(
-    script
-  );
+  document.body.appendChild(script);
 
 }
 
 
+/* =========================
+   QR読み取り中のエラー
+========================= */
 
-/* ========================================
+function onScanFailure(error) {
+
+  // 読み取り失敗は通常なので何もしない
+
+}
+
+
+/* =========================
    結果表示
-   ======================================== */
+========================= */
 
 function showResult(data) {
 
-
   const result =
-    document.getElementById(
-      "result"
-    );
-
+    document.getElementById("result");
 
   const icon =
-    document.getElementById(
-      "resultIcon"
-    );
-
+    document.getElementById("resultIcon");
 
   const title =
-    document.getElementById(
-      "resultTitle"
-    );
-
+    document.getElementById("resultTitle");
 
   const info =
-    document.getElementById(
-      "resultInfo"
-    );
+    document.getElementById("resultInfo");
 
 
-  const status =
-    document.getElementById(
-      "status"
-    );
+  result.className = "result";
 
-
-  /*
-   * 入場OK
-   */
 
   if (
     data &&
     data.type === "success"
   ) {
 
+    result.classList.add("success");
 
-    result.className =
-      "result success";
-
-
-    result.style.display =
-      "block";
-
-
-    icon.textContent =
-      "OK";
-
+    icon.textContent = "✓";
 
     title.textContent =
       "入場OK";
@@ -1009,73 +711,32 @@ function showResult(data) {
 
     info.innerHTML =
 
-      "整理番号<br>" +
-
-      "<strong>" +
+      "整理番号：<strong>" +
       escapeHtml(
-        String(
-          data.reservationNumber || ""
-        )
+        data.reservationNumber
       ) +
-      "</strong><br><br>" +
+      "</strong><br>" +
 
-      "お名前<br>" +
-
-      "<strong>" +
+      "氏名：" +
       escapeHtml(
-        String(
-          data.name || ""
-        )
+        data.name || ""
       ) +
-      "</strong><br><br>" +
+      "<br>" +
 
-      "入場時間<br>" +
-
-      "<strong>" +
+      "入場時間：" +
       escapeHtml(
-        String(
-          data.entryTime || ""
-        )
-      ) +
-      "</strong>";
+        data.entryTime || ""
+      );
 
 
-    status.textContent =
-      "入場処理が完了しました。";
-
-
-    playSound(
-      "success"
-    );
-
-
-    return;
-
-  }
-
-
-
-  /*
-   * すでに入場済み
-   */
-
-  if (
+  } else if (
     data &&
     data.type === "already"
   ) {
 
+    result.classList.add("warning");
 
-    result.className =
-      "result warning";
-
-
-    result.style.display =
-      "block";
-
-
-    icon.textContent =
-      "!";
-
+    icon.textContent = "!";
 
     title.textContent =
       "入場済み";
@@ -1083,158 +744,59 @@ function showResult(data) {
 
     info.innerHTML =
 
-      "整理番号<br>" +
+      "このチケットはすでに入場済みです。<br><br>" +
 
-      "<strong>" +
+      "整理番号：" +
       escapeHtml(
-        String(
-          data.reservationNumber || ""
-        )
+        data.reservationNumber
       ) +
-      "</strong><br><br>" +
+      "<br>" +
 
-      "お名前<br>" +
-
-      "<strong>" +
+      "氏名：" +
       escapeHtml(
-        String(
-          data.name || ""
-        )
+        data.name || ""
       ) +
-      "</strong><br><br>" +
+      "<br>" +
 
-      "入場時間<br>" +
-
-      "<strong>" +
+      "入場時間：" +
       escapeHtml(
-        String(
-          data.entryTime || ""
-        )
-      ) +
-      "</strong>";
+        data.entryTime || ""
+      );
 
 
-    status.textContent =
-      "このチケットはすでに使用されています。";
+  } else {
 
+    result.classList.add("error");
 
-    playSound(
-      "warning"
-    );
-
-
-    return;
-
-  }
-
-
-
-  /*
-   * 無効なチケット
-   */
-
-  if (
-    data &&
-    data.type === "invalid"
-  ) {
-
-
-    result.className =
-      "result error";
-
-
-    result.style.display =
-      "block";
-
-
-    icon.textContent =
-      "!";
-
+    icon.textContent = "!";
 
     title.textContent =
-      "チケット無効";
+      "受付エラー";
 
 
     info.innerHTML =
-
-      "有効なチケットが見つかりません。";
-
-
-    status.textContent =
-      "受付処理に失敗しました。";
-
-
-    playSound(
-      "error"
-    );
-
-
-    return;
+      escapeHtml(
+        data && data.message
+          ? data.message
+          : "受付処理に失敗しました。"
+      );
 
   }
 
 
-
-  /*
-   * その他のエラー
-   */
-
-  result.className =
-    "result error";
-
-
-  result.style.display =
-    "block";
-
-
-  icon.textContent =
-    "!";
-
-
-  title.textContent =
-    "受付エラー";
-
-
-  info.innerHTML =
-
-    escapeHtml(
-      String(
-        data &&
-        data.message
-          ? data.message
-          : "受付処理に失敗しました。"
-      )
-    );
-
-
-  status.textContent =
-    "受付処理に失敗しました。";
-
-
-  playSound(
-    "error"
-  );
+  result.style.display = "block";
 
 }
 
 
-
-/* ========================================
-   次のチケット
-   ======================================== */
+/* =========================
+   もう一度読み取る
+========================= */
 
 async function nextTicket() {
 
-
   const result =
-    document.getElementById(
-      "result"
-    );
-
-
-  result.className =
-    "result";
-
+    document.getElementById("result");
 
   result.style.display =
     "none";
@@ -1251,133 +813,20 @@ async function nextTicket() {
 }
 
 
-
-/* ========================================
+/* =========================
    HTMLエスケープ
-   ======================================== */
+========================= */
 
-function escapeHtml(text) {
+function escapeHtml(value) {
 
-
-  return text
-
-    .replace(
-      /&/g,
-      "&amp;"
-    )
-
-    .replace(
-      /</g,
-      "&lt;"
-    )
-
-    .replace(
-      />/g,
-      "&gt;"
-    )
-
-    .replace(
-      /"/g,
-      "&quot;"
-    )
-
-    .replace(
-      /'/g,
-      "&#039;"
-    );
+  return String(value || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
 
 }
-
-
-
-/* ========================================
-   効果音
-   ======================================== */
-
-function playSound(type) {
-
-
-  try {
-
-
-    const context =
-      new (
-        window.AudioContext ||
-        window.webkitAudioContext
-      )();
-
-
-    const oscillator =
-      context.createOscillator();
-
-
-    const gain =
-      context.createGain();
-
-
-    oscillator.connect(
-      gain
-    );
-
-
-    gain.connect(
-      context.destination
-    );
-
-
-    if (
-      type === "success"
-    ) {
-
-      oscillator.frequency.value =
-        880;
-
-    } else if (
-      type === "warning"
-    ) {
-
-      oscillator.frequency.value =
-        440;
-
-    } else {
-
-      oscillator.frequency.value =
-        220;
-
-    }
-
-
-    gain.gain.setValueAtTime(
-      0.15,
-      context.currentTime
-    );
-
-
-    gain.gain.exponentialRampToValueAtTime(
-      0.001,
-      context.currentTime + 0.3
-    );
-
-
-    oscillator.start();
-
-
-    oscillator.stop(
-      context.currentTime + 0.3
-    );
-
-
-  } catch (e) {
-
-    /*
-     * 音が出せなくても
-     * 入場処理には影響させない
-     */
-
-  }
-
-}
-
 
 </script>
 
