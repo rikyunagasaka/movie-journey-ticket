@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>MOVIE JOURNEY 入場受付</title>
+
+  <script
+    src="https://unpkg.com/html5-qrcode"
+    type="text/javascript">
+  </script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+      background: #fff4f8;
+      color: #333;
+    }
+
+    .header {
+      background: linear-gradient(135deg, #ff7eb3, #ff4f91);
+      color: white;
+      text-align: center;
+      padding: 24px 16px;
+    }
+
+    .festival {
+      font-size: 14px;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+    }
+
+    .title {
+      font-size: 30px;
+      font-weight: 800;
+      letter-spacing: 1px;
+    }
+
+    .subtitle {
+      font-size: 14px;
+      margin-top: 6px;
+    }
+
+    .container {
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 20px 16px 40px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 18px;
+      padding: 20px;
+      margin-bottom: 16px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    }
+
+    h2 {
+      text-align: center;
+      margin: 4px 0 18px;
+      font-size: 22px;
+    }
+
+    .description {
+      text-align: center;
+      font-size: 14px;
+      color: #666;
+      line-height: 1.7;
+      margin-bottom: 18px;
+    }
+
+    button {
+      width: 100%;
+      border: none;
+      border-radius: 12px;
+      padding: 15px;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .start-button {
+      background: #ff4f91;
+      color: white;
+    }
+
+    .start-button:active {
+      transform: scale(0.98);
+    }
+
+    #reader {
+      width: 100%;
+      margin-top: 18px;
+    }
+
+    .result {
+      display: none;
+      text-align: center;
+      border-radius: 16px;
+      padding: 24px 18px;
+      margin-top: 18px;
+    }
+
+    .success {
+      display: block;
+      background: #fff0f6;
+      border: 2px solid #ff4f91;
+    }
+
+    .already {
+      display: block;
+      background: #fff8e8;
+      border: 2px solid #e6a400;
+    }
+
+    .invalid {
+      display: block;
+      background: #fff0f0;
+      border: 2px solid #d93025;
+    }
+
+    .result-icon {
+      font-size: 48px;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .result-title {
+      font-size: 28px;
+      font-weight: 800;
+      margin-bottom: 18px;
+    }
+
+    .info {
+      text-align: left;
+      background: white;
+      border-radius: 12px;
+      padding: 14px;
+      line-height: 1.8;
+    }
+
+    .label {
+      color: #777;
+      font-size: 13px;
+    }
+
+    .value {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .small-value {
+      font-size: 16px;
+      font-weight: bold;
+    }
+
+    .next-button {
+      margin-top: 18px;
+      background: #333;
+      color: white;
+    }
+
+    .message {
+      text-align: center;
+      color: #666;
+      font-size: 14px;
+      margin-top: 12px;
+      line-height: 1.6;
+    }
+
+    .footer {
+      text-align: center;
+      color: #888;
+      font-size: 12px;
+      line-height: 1.7;
+      margin-top: 28px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="header">
+    <div class="festival">NSM学園祭2026</div>
+    <div class="title">MOVIE JOURNEY</div>
+    <div class="subtitle">SO.ON project NAGOYA ライブ</div>
+  </div>
+
+  <div class="container">
+
+    <div class="card">
+
+      <h2>入場受付</h2>
+
+      <div class="description">
+        チケットのQRコードを読み取ってください。<br>
+        読み取り後、自動的に入場処理を行います。
+      </div>
+
+      <button
+        id="startButton"
+        class="start-button"
+        onclick="startCamera()">
+        カメラを起動する
+      </button>
+
+      <div id="reader"></div>
+
+      <div id="message" class="message"></div>
+
+      <div id="result" class="result"></div>
+
+    </div>
+
+    <div class="footer">
+      名古屋スクールオブミュージック＆ダンス専門学校<br>
+      nsm_event@edu.nsm.ac.jp
+    </div>
+
+  </div>
+
+
+<script>
+
+  // Google Apps Script ウェブアプリURL
+  const API_URL =
+    "https://script.google.com/a/macros/edu.nsm.ac.jp/s/AKfycbwIo7q50x_TX1baEnBwEDEp51rn1PR0UP0Q5ILdHD1z6kUCQadIMNH4Hl1p7t_1ZpxhhA/exec";
+
+
+  let scanner = null;
+
+
+  // カメラ開始
+  async function startCamera() {
+
+    const button =
+      document.getElementById("startButton");
+
+    const message =
+      document.getElementById("message");
+
+    message.textContent =
+      "カメラを起動しています…";
+
+    button.disabled = true;
+
+    try {
+
+      const cameras =
+        await Html5Qrcode.getCameras();
+
+      if (!cameras || cameras.length === 0) {
+
+        throw new Error(
+          "カメラが見つかりません。"
+        );
+
+      }
+
+      let cameraId =
+        cameras[0].id;
+
+      // 背面カメラを優先
+      const rearCamera =
+        cameras.find(camera =>
+          /back|rear|environment/i.test(
+            camera.label
+          )
+        );
+
+      if (rearCamera) {
+        cameraId = rearCamera.id;
+      }
+
+      scanner =
+        new Html5Qrcode("reader");
+
+      await scanner.start(
+        cameraId,
+        {
+          fps: 10,
+          qrbox: {
+            width: 250,
+            height: 250
+          }
+        },
+        onScanSuccess,
+        onScanError
+      );
+
+      message.textContent =
+        "QRコードを枠の中に入れてください。";
+
+    } catch (error) {
+
+      console.error(error);
+
+      message.textContent =
+        "カメラを起動できませんでした。カメラの使用を許可してください。";
+
+      button.disabled = false;
+    }
+  }
+
+
+  // QR読み取り成功
+  async function onScanSuccess(decodedText) {
+
+    if (!decodedText) {
+      return;
+    }
+
+    try {
+
+      await scanner.stop();
+
+    } catch (e) {}
+
+    document.getElementById("message")
+      .textContent =
+      "チケットを確認しています…";
+
+    checkTicket(decodedText);
+  }
+
+
+  function onScanError(errorMessage) {
+    // 読み取り中のエラーは無視
+  }
+
+
+  // チケット確認
+  async function checkTicket(ticketId) {
+
+    const result =
+      document.getElementById("result");
+
+    try {
+
+      const url =
+        API_URL +
+        "?ticketId=" +
+        encodeURIComponent(ticketId);
+
+      const response =
+        await fetch(url);
+
+      const data =
+        await response.json();
+
+      showResult(data);
+
+    } catch (error) {
+
+      console.error(error);
+
+      showResult({
+        success: false,
+        type: "error",
+        message:
+          "受付処理に失敗しました。"
+      });
+    }
+  }
+
+
+  // 結果表示
+  function showResult(data) {
+
+    const result =
+      document.getElementById("result");
+
+    result.style.display = "block";
+
+    if (data.type === "success") {
+
+      result.className =
+        "result success";
+
+      result.innerHTML = `
+
+        <div class="result-icon">✓</div>
+
+        <div class="result-title">
+          入場OK
+        </div>
+
+        <div class="info">
+
+          <div class="label">
+            整理番号
+          </div>
+
+          <div class="value">
+            ${escapeHtml(data.reservationNumber)}
+          </div>
+
+          <br>
+
+          <div class="label">
+            お名前
+          </div>
+
+          <div class="small-value">
+            ${escapeHtml(data.name)}
+          </div>
+
+          <br>
+
+          <div class="label">
+            入場時間
+          </div>
+
+          <div class="small-value">
+            ${escapeHtml(data.entryTime)}
+          </div>
+
+        </div>
+
+        <button
+          class="next-button"
+          onclick="nextTicket()">
+          次のチケットを読み取る
+        </button>
+      `;
+
+      playSound("success");
+
+    } else if (data.type === "already") {
+
+      result.className =
+        "result already";
+
+      result.innerHTML = `
+
+        <div class="result-icon">!</div>
+
+        <div class="result-title">
+          入場済み
+        </div>
+
+        <div class="info">
+
+          <div class="label">
+            整理番号
+          </div>
+
+          <div class="value">
+            ${escapeHtml(data.reservationNumber)}
+          </div>
+
+          <br>
+
+          <div class="label">
+            お名前
+          </div>
+
+          <div class="small-value">
+            ${escapeHtml(data.name)}
+          </div>
+
+          <br>
+
+          <div class="label">
+            入場済み時間
+          </div>
+
+          <div class="small-value">
+            ${escapeHtml(data.entryTime)}
+          </div>
+
+        </div>
+
+        <button
+          class="next-button"
+          onclick="nextTicket()">
+          次のチケットを読み取る
+        </button>
+      `;
+
+      playSound("warning");
+
+    } else {
+
+      result.className =
+        "result invalid";
+
+      result.innerHTML = `
+
+        <div class="result-icon">!</div>
+
+        <div class="result-title">
+          チケット無効
+        </div>
+
+        <div class="message">
+          ${escapeHtml(
+            data.message ||
+            "有効なチケットが見つかりません。"
+          )}
+        </div>
+
+        <button
+          class="next-button"
+          onclick="nextTicket()">
+          もう一度読み取る
+        </button>
+      `;
+
+      playSound("error");
+    }
+  }
+
+
+  // 次のチケット
+  async function nextTicket() {
+
+    const result =
+      document.getElementById("result");
+
+    result.style.display = "none";
+
+    document.getElementById("message")
+      .textContent = "";
+
+    document.getElementById("startButton")
+      .disabled = false;
+
+    await startCamera();
+  }
+
+
+  // HTMLエスケープ
+  function escapeHtml(value) {
+
+    if (value === undefined ||
+        value === null) {
+
+      return "";
+    }
+
+    return String(value)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
+
+  // 効果音
+  function playSound(type) {
+
+    try {
+
+      const AudioContext =
+        window.AudioContext ||
+        window.webkitAudioContext;
+
+      const context =
+        new AudioContext();
+
+      const oscillator =
+        context.createOscillator();
+
+      const gain =
+        context.createGain();
+
+      oscillator.connect(gain);
+      gain.connect(context.destination);
+
+      if (type === "success") {
+
+        oscillator.frequency.value = 880;
+
+      } else if (type === "warning") {
+
+        oscillator.frequency.value = 440;
+
+      } else {
+
+        oscillator.frequency.value = 220;
+      }
+
+      gain.gain.setValueAtTime(
+        0.15,
+        context.currentTime
+      );
+
+      gain.gain.exponentialRampToValueAtTime(
+        0.001,
+        context.currentTime + 0.3
+      );
+
+      oscillator.start();
+
+      oscillator.stop(
+        context.currentTime + 0.3
+      );
+
+    } catch (e) {}
+  }
+
+</script>
+
+</body>
+</html>
